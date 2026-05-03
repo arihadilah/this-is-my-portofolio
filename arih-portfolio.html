@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arih Adilah Hasan — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --navy: #2D3A6B;
+    --crimson: #8B1A2E;
+    --rose: #C9455F;
+    --grid-color: rgba(45,58,107,0.08);
+    --text-dark: #1a1a1a;
+    --text-mid: #444;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(45,58,107,0.12);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--crimson); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; color: var(--navy);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--crimson); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--crimson);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 36px; height: 2px; background: var(--crimson);
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(4rem, 9vw, 9rem);
+    font-weight: 800; line-height: 0.92;
+    color: var(--navy);
+    margin-bottom: 0;
+  }
+  .hero-name .outline {
+    -webkit-text-stroke: 3px var(--navy);
+    color: transparent;
+  }
+  .hero-name .crimson { color: var(--crimson); }
+  .hero-desc {
+    max-width: 520px;
+    font-size: 1.05rem; line-height: 1.75;
+    color: var(--text-mid); margin-top: 36px; margin-bottom: 48px;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 15px 32px; border-radius: 4px;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+    cursor: pointer; border: 2px solid transparent;
+  }
+  .btn-primary {
+    background: var(--navy); color: var(--cream);
+  }
+  .btn-primary:hover { background: var(--crimson); }
+  .btn-outline {
+    border-color: var(--navy); color: var(--navy);
+  }
+  .btn-outline:hover { border-color: var(--crimson); color: var(--crimson); }
+
+  .hero-deco {
+    position: absolute; right: -60px; top: 50%;
+    transform: translateY(-50%);
+    width: min(520px, 45vw); height: min(520px, 45vw);
+    border-radius: 50%;
+    border: 2px solid rgba(45,58,107,0.14);
+    pointer-events: none;
+  }
+  .hero-deco::before {
+    content: ''; position: absolute; inset: 36px;
+    border-radius: 50%; border: 2px solid rgba(139,26,46,0.14);
+  }
+  .hero-deco::after {
+    content: ''; position: absolute; inset: 72px;
+    border-radius: 50%; background: rgba(45,58,107,0.04);
+  }
+  .hero-tag {
+    position: absolute; right: 80px; bottom: 80px;
+    font-family: 'Syne', sans-serif; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--navy); opacity: 0.4;
+    writing-mode: vertical-rl;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--crimson); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800; color: var(--navy); line-height: 1.05;
+    margin-bottom: 52px;
+  }
+  .divider {
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--crimson), transparent);
+    margin-bottom: 60px; max-width: 120px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 80px; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%; max-width: 340px;
+    aspect-ratio: 3/4;
+    background: var(--navy);
+    border-radius: 8px;
+    position: relative; overflow: hidden;
+  }
+  .about-img-frame::after {
+    content: 'ARIH'; position: absolute;
+    bottom: 16px; right: 16px;
+    font-family: 'Syne', sans-serif; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+  }
+  .about-deco-box {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border: 3px solid var(--crimson);
+    border-radius: 8px; z-index: -1;
+  }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--text-mid); margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--navy); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .chip {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 99px;
+    border: 1.5px solid var(--navy); color: var(--navy);
+    transition: all 0.2s;
+  }
+  .chip:hover { background: var(--navy); color: var(--cream); }
+  .chip.crimson-chip { border-color: var(--crimson); color: var(--crimson); }
+  .chip.crimson-chip:hover { background: var(--crimson); color: var(--cream); }
+
+  /* SKILLS */
+  .skills-section { background: var(--navy); position: relative; overflow: hidden; }
+  .skills-section .section-label { color: rgba(245,240,232,0.5); }
+  .skills-section .section-title { color: var(--cream); }
+  .skills-bg-text {
+    position: absolute; top: -30px; right: -20px;
+    font-family: 'Syne', sans-serif; font-size: 15rem; font-weight: 800;
+    color: rgba(255,255,255,0.03); user-select: none; pointer-events: none;
+    white-space: nowrap;
+  }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .skill-group-title {
+    font-family: 'Syne', sans-serif; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 24px;
+  }
+  .tech-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge {
+    font-family: 'Syne', sans-serif; font-size: 0.78rem;
+    font-weight: 600; padding: 8px 18px;
+    border: 1.5px solid rgba(245,240,232,0.2);
+    color: var(--cream); border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .badge:hover { background: var(--crimson); border-color: var(--crimson); }
+  .soft-list { list-style: none; }
+  .soft-list li {
+    font-size: 1.05rem; color: rgba(245,240,232,0.85);
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .soft-list li::before {
+    content: '→'; color: var(--rose); font-family: 'Syne', sans-serif; font-weight: 700;
+  }
+
+  /* EXPERIENCE */
+  .exp-grid { display: grid; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 40px; padding: 40px 0;
+    border-bottom: 1.5px solid rgba(45,58,107,0.1);
+  }
+  .exp-item:first-child { border-top: 1.5px solid rgba(45,58,107,0.1); }
+  .exp-year {
+    font-family: 'Syne', sans-serif; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--crimson); padding-top: 4px;
+  }
+  .exp-company {
+    font-family: 'Syne', sans-serif; font-size: 1.1rem;
+    font-weight: 700; color: var(--navy); margin-bottom: 4px;
+  }
+  .exp-role {
+    font-size: 0.88rem; color: var(--crimson);
+    font-weight: 500; margin-bottom: 14px;
+    font-style: italic;
+  }
+  .exp-desc {
+    font-size: 0.95rem; line-height: 1.75; color: var(--text-mid);
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .exp-tag {
+    font-family: 'Syne', sans-serif; font-size: 0.65rem;
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(45,58,107,0.07); color: var(--navy);
+    padding: 4px 10px; border-radius: 3px;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+  .project-card {
+    border: 1.5px solid rgba(45,58,107,0.15);
+    border-radius: 8px; padding: 36px;
+    transition: all 0.25s; position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.5);
+  }
+  .project-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--crimson);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-num {
+    font-family: 'Syne', sans-serif; font-size: 0.65rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--crimson); margin-bottom: 16px;
+  }
+  .project-title {
+    font-family: 'Syne', sans-serif; font-size: 1.25rem;
+    font-weight: 800; color: var(--navy);
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .project-org {
+    font-size: 0.82rem; color: var(--crimson);
+    font-style: italic; margin-bottom: 18px;
+  }
+  .project-desc {
+    font-size: 0.92rem; line-height: 1.75; color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-pill {
+    font-family: 'Syne', sans-serif; font-size: 0.63rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--navy); color: var(--cream);
+    padding: 4px 10px; border-radius: 3px;
+  }
+
+  /* EDUCATION */
+  .edu-section { background: var(--cream); }
+  .edu-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .edu-card {
+    border: 1.5px solid rgba(45,58,107,0.15);
+    border-radius: 8px; padding: 36px;
+    background: white; transition: all 0.2s;
+  }
+  .edu-card:hover { border-color: var(--crimson); }
+  .edu-period {
+    font-family: 'Syne', sans-serif; font-size: 0.68rem;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--crimson); margin-bottom: 12px;
+  }
+  .edu-institution {
+    font-family: 'Syne', sans-serif; font-size: 1.2rem;
+    font-weight: 800; color: var(--navy); margin-bottom: 6px;
+  }
+  .edu-major { font-size: 0.92rem; color: var(--text-mid); }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--crimson); position: relative; overflow: hidden;
+  }
+  .contact-section .section-title { color: var(--cream); }
+  .contact-section .section-label { color: rgba(245,240,232,0.6); }
+  .contact-bg {
+    position: absolute; right: -100px; top: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(0,0,0,0.08);
+    pointer-events: none;
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-tagline {
+    font-size: 1.15rem; line-height: 1.8;
+    color: rgba(245,240,232,0.85); max-width: 400px;
+  }
+  .contact-links { list-style: none; }
+  .contact-links li {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.15);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .contact-links a {
+    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600;
+    color: var(--cream); text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .contact-links a:hover { opacity: 0.7; }
+  .contact-link-label {
+    font-family: 'Syne', sans-serif; font-size: 0.65rem;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,240,232,0.45); margin-right: 20px; min-width: 80px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(245,240,232,0.4);
+    text-align: center; padding: 28px 60px;
+    font-size: 0.78rem; letter-spacing: 0.08em;
+    font-family: 'Syne', sans-serif; font-weight: 600;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
+  }
+  .fade-up { animation: fadeUp 0.8s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+
+  .spin-badge {
+    position: absolute; bottom: 40px; left: 60px;
+    width: 110px; height: 110px;
+  }
+  .spin-badge svg { animation: spin-slow 12s linear infinite; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .about-grid, .skills-grid, .contact-grid, .edu-cards { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .hero-deco { display: none; }
+    .spin-badge { display: none; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A<span>.</span>A<span>.</span>H</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow fade-up">Informatics Engineering Graduate</div>
+  <h1 class="hero-name">
+    <div class="fade-up delay-1">ARIH</div>
+    <div class="fade-up delay-2"><span class="outline">ADILAH</span></div>
+    <div class="fade-up delay-3"><span class="crimson">HASAN</span></div>
+  </h1>
+  <p class="hero-desc fade-up delay-4">
+    Fullstack developer with a passion for problem-solving, clean systems, and meaningful tech. 
+    Building bridges between code and human experience.
+  </p>
+  <div class="hero-cta fade-up delay-4">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+
+  <div class="hero-deco"></div>
+  <div class="hero-tag">BANDUNG — WEST JAVA — 2025</div>
+
+  <div class="spin-badge">
+    <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="55" cy="55" r="50" fill="none" stroke="rgba(45,58,107,0.15)" stroke-width="1"/>
+      <path id="textPath" fill="none" d="M55,10 A45,45 0 1,1 54.9,10"/>
+      <text font-family="Syne, sans-serif" font-size="9" font-weight="700" letter-spacing="3.2" fill="var(--navy)" opacity="0.5">
+        <textPath href="#textPath">FULLSTACK · DEVELOPER · NLP · UI/UX ·  </textPath>
+      </text>
+      <circle cx="55" cy="55" r="18" fill="var(--navy)" opacity="0.08"/>
+      <text x="55" y="59" text-anchor="middle" font-family="Syne" font-size="11" font-weight="800" fill="var(--navy)">✦</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <h2 class="section-title">Who I am</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <!-- <div class="about-img-frame">
+        <svg viewBox="0 0 340 453" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="imgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3a4d80"/>
+              <stop offset="100%" stop-color="#2D3A6B"/>
+            </linearGradient>
+          </defs>
+          <rect width="340" height="453" fill="url(#imgGrad)"/>
+           Decorative silhouette placeholder -->
+          <!-- <ellipse cx="170" cy="170" rx="70" ry="70" fill="rgba(245,240,232,0.12)"/>
+          <path d="M80 453 Q170 320 260 453 Z" fill="rgba(245,240,232,0.07)"/>
+          <text x="170" y="240" text-anchor="middle" font-family="Syne" font-size="13" font-weight="700" fill="rgba(245,240,232,0.35)" letter-spacing="2">ARIH ADILAH HASAN</text>
+          <text x="170" y="260" text-anchor="middle" font-family="Syne" font-size="10" fill="rgba(245,240,232,0.2)" letter-spacing="3">INFORMATICS ENGINEERING</text> -->
+          <!-- Smiley deco -->
+          <!-- <circle cx="290" cy="40" r="28" fill="none" stroke="rgba(245,240,232,0.15)" stroke-width="2"/>
+          <circle cx="283" cy="34" r="3" fill="rgba(245,240,232,0.15)"/>
+          <circle cx="297" cy="34" r="3" fill="rgba(245,240,232,0.15)"/>
+          <path d="M282 47 Q290 54 298 47" stroke="rgba(245,240,232,0.15)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div> -->
+      <div class="about-img-frame">
+        <img src="foto-arih.jpg" alt="Arih Adilah Hasan" 
+            style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div class="about-deco-box"></div>
+    </div>
+    <div class="about-text">
+      <p>Hello! I'm <strong>Arih Adilah Hasan</strong>, a freshly minted Informatics Engineering graduate from <strong>UIN Sunan Gunung Djati Bandung</strong> (Class of 2025).</p>
+      <p>I thrive at the intersection of technical development and human-centered thinking — whether that's writing clean backend code, crafting intuitive user flows, or coordinating cross-functional teams.</p>
+      <p>My experience spans fullstack development, NLP research, product internships, and active organizational leadership. I believe great software comes from understanding people first.</p>
+      <div class="chip-row">
+        <span class="chip">Fullstack Dev</span>
+        <span class="chip crimson-chip">NLP / BERT</span>
+        <span class="chip">Team Lead</span>
+        <span class="chip crimson-chip">Documentation</span>
+        <span class="chip">Vue.js</span>
+        <span class="chip crimson-chip">Laravel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="skills-bg-text">SKILLS</div>
+  <div class="section-label">02 — Skills</div>
+  <h2 class="section-title">What I Bring</h2>
+  <div class="divider" style="background: linear-gradient(90deg, var(--rose), transparent);"></div>
+  <div class="skills-grid">
+    <div>
+      <div class="skill-group-title">Technical Stack</div>
+      <div class="tech-badges">
+        <span class="badge">Vue.js</span>
+        <span class="badge">React</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">PHP</span>
+        <span class="badge">Laravel</span>
+        <span class="badge">Node.js</span>
+        <span class="badge">Python</span>
+        <span class="badge">MySQL</span>
+        <span class="badge">CodeIgniter</span>
+        <span class="badge">Figma</span>
+        <span class="badge">Git / GitHub</span>
+        <span class="badge">BERT / NLP</span>
+      </div>
+    </div>
+    <div>
+      <div class="skill-group-title">Soft Skills</div>
+      <ul class="soft-list">
+        <li>Fast Learner</li>
+        <li>Detail Oriented</li>
+        <li>Empathy-Driven</li>
+        <li>Critical Thinking</li>
+        <li>Team Coordination</li>
+        <li>Adaptability</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Experience</div>
+  <h2 class="section-title">Where I've Worked</h2>
+  <div class="divider"></div>
+  <div class="exp-grid">
+
+    <div class="exp-item">
+      <div class="exp-year">2025<br>Intern</div>
+      <div>
+        <div class="exp-company">PT. Jasamedika Transmedic</div>
+        <div class="exp-role">Fullstack Developer Intern (Maganghub)</div>
+        <div class="exp-desc">Developed and maintained SIMRS — a large-scale Hospital Management Information System. Implemented new features, handled bug fixes, and integrated frontend (Vue.js) with backend (Laravel) to streamline hospital operations including patient management and medical records.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Laravel</span>
+          <span class="exp-tag">Vue.js</span>
+          <span class="exp-tag">MySQL</span>
+          <span class="exp-tag">SIMRS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2024<br>Work</div>
+      <div>
+        <div class="exp-company">Innovasia</div>
+        <div class="exp-role">Product Team Intern — Bandung</div>
+        <div class="exp-desc">Supported a WhatsApp-based payment platform for philanthropic organizations. Identified user needs, troubleshot payment gateway flows, improved product documentation, and helped build the company profile website for branding.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Product</span>
+          <span class="exp-tag">Documentation</span>
+          <span class="exp-tag">Web Dev</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2023–24<br>Org</div>
+      <div>
+        <div class="exp-company">LDM UIN Bandung</div>
+        <div class="exp-role">Secretary of Cadre Development</div>
+        <div class="exp-desc">Developed mentoring curriculum and program documentation. Coordinated communication across mentors, leaders, and members. Served as steering committee member in major organizational events.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Leadership</span>
+          <span class="exp-tag">Curriculum Design</span>
+          <span class="exp-tag">Coordination</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2024<br>Org</div>
+      <div>
+        <div class="exp-company">Negarawan Muda — Salman ITB</div>
+        <div class="exp-role">Committee Member</div>
+        <div class="exp-desc">Assisted in designing learning materials and program modules for a youth civic leadership program. Supported research, planning, and execution of educational activities.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Education</span>
+          <span class="exp-tag">Planning</span>
+          <span class="exp-tag">Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2022<br>Org</div>
+      <div>
+        <div class="exp-company">DEMA — Faculty of Science & Technology</div>
+        <div class="exp-role">Staff Member</div>
+        <div class="exp-desc">Supported faculty programs and student events. Assisted with administrative tasks and internal coordination.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Administration</span>
+          <span class="exp-tag">Events</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: rgba(45,58,107,0.03);">
+  <div class="section-label">04 — Projects</div>
+  <h2 class="section-title">Things I've Built</h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">Project 01 — Thesis</div>
+      <div class="project-title">Qur'anic Verse Matcher with BERT NLP</div>
+      <div class="project-org">UIN Sunan Gunung Djati Bandung</div>
+      <div class="project-desc">An NLP system that matches users' emotional text expressions to the most relevant Qur'anic verses using semantic similarity. Evaluated with Recall@k, MRR, and Cosine Similarity metrics.</div>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">BERT</span>
+        <span class="stack-pill">NLP</span>
+        <span class="stack-pill">Semantic Search</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">Project 02 — Intern</div>
+      <div class="project-title">Web Attendance System</div>
+      <div class="project-org">Sygma Foundation — Sekolah Bintang Madani</div>
+      <div class="project-desc">Replaced manual attendance tracking with a digital web system for school staff and students. Handled full-cycle development: from user need identification and wireframing to system features and user testing.</div>
+      <div class="project-stack">
+        <span class="stack-pill">Fullstack</span>
+        <span class="stack-pill">PHP</span>
+        <span class="stack-pill">MySQL</span>
+        <span class="stack-pill">UI/UX</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">Project 03 — Internship</div>
+      <div class="project-title">Hospital Management System (SIMRS)</div>
+      <div class="project-org">PT. Jasamedika Transmedic, Bandung</div>
+      <div class="project-desc">Contributed to a large-scale healthcare enterprise platform covering patient management, medical records, and administrative workflows. Implemented features aligned with real hospital operations.</div>
+      <div class="project-stack">
+        <span class="stack-pill">Laravel</span>
+        <span class="stack-pill">Vue.js</span>
+        <span class="stack-pill">MySQL</span>
+        <span class="stack-pill">Enterprise</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">Project 04 — Work</div>
+      <div class="project-title">Company Profile Website</div>
+      <div class="project-org">Innovasia, Bandung</div>
+      <div class="project-desc">Developed the company profile website for Innovasia's WhatsApp-based donation payment platform. Focused on product presentation, brand identity, and workflow documentation clarity.</div>
+      <div class="project-stack">
+        <span class="stack-pill">Web Dev</span>
+        <span class="stack-pill">Branding</span>
+        <span class="stack-pill">Product</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="edu-section">
+  <div class="section-label">05 — Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="divider"></div>
+  <div class="edu-cards">
+    <div class="edu-card">
+      <div class="edu-period">2021 — 2025</div>
+      <div class="edu-institution">UIN Sunan Gunung Djati Bandung</div>
+      <div class="edu-major">S1 Informatics Engineering</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2017 — 2020</div>
+      <div class="edu-institution">SMA IT Ihsanul Fikri</div>
+      <div class="edu-major">Math–Science (IPA)</div>
+    </div>
+    <div class="edu-card" style="border-color: var(--crimson);">
+      <div class="edu-period">Jan 2024 — Certificate</div>
+      <div class="edu-institution">Cisco Networking Academy</div>
+      <div class="edu-major">CCNAv7: Introduction to Networks</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-bg"></div>
+  <div class="section-label">06 — Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="divider" style="background: linear-gradient(90deg, rgba(245,240,232,0.5), transparent);"></div>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-tagline">
+        I'm open to new opportunities — whether it's a full-time role, freelance project, or just a conversation about tech. Don't hesitate to reach out!
+      </p>
+      <br><br>
+      <a href="CV ARIH ADILAH HASAN.pdf" class="btn" style="background: var(--cream); color: var(--crimson); border-color: var(--cream);" target="_blank">Visit My Resume ↗</a>
+    </div>
+    <div>
+      <ul class="contact-links">
+        <li>
+          <span class="contact-link-label">Email</span>
+          <a href="mailto:arihadilah@gmail.com">arihadilah@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-link-label">Phone</span>
+          <a href="tel:+6282133511818">0821-3351-1818</a>
+        </li>
+        <li>
+          <span class="contact-link-label">LinkedIn</span>
+          <a href="https://linkedin.com/in/arih-adilah-hasan-47895a215/" target="_blank">arih-adilah-hasan</a>
+        </li>
+        <li>
+          <span class="contact-link-label">GitHub</span>
+          <a href="https://github.com/arihadilah" target="_blank">@arihadilah</a>
+        </li>
+        <li>
+          <span class="contact-link-label">Instagram</span>
+          <a href="https://instagram.com/ariihhh__" target="_blank">@ariihhh__</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Arih Adilah Hasan — Informatics Engineering Graduate, Bandung</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.exp-item, .project-card, .edu-card, .badge').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--crimson)' : '';
+    });
+  });
+</script>
+</body>
+</html>
